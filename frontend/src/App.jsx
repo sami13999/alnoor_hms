@@ -27,7 +27,14 @@ export default function App() {
   const { user, role, loading } = useAuth();
   const { theme } = useTheme();
   const [activeTab, setActiveTab] = useState('opd');
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  
+  // Drawer open state (persisted in localStorage, defaults open on large screens)
+  const [isDrawerOpen, setIsDrawerOpen] = useState(() => {
+    const saved = localStorage.getItem('alnoor_drawer_open');
+    if (saved !== null) return saved === 'true';
+    return window.innerWidth >= 1200;
+  });
+  
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   // Auto-switch default tab based on user's active role
@@ -42,6 +49,19 @@ export default function App() {
     else if (role === 'COMPLIANCE_ADMIN') setActiveTab('audit');
   }, [role]);
 
+  const toggleDrawer = () => {
+    setIsDrawerOpen(prev => {
+      const next = !prev;
+      localStorage.setItem('alnoor_drawer_open', String(next));
+      return next;
+    });
+  };
+
+  const closeDrawer = () => {
+    setIsDrawerOpen(false);
+    localStorage.setItem('alnoor_drawer_open', 'false');
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center space-y-4">
@@ -55,12 +75,12 @@ export default function App() {
 
   return (
     <div className={`h-screen flex ${theme === 'dark' ? 'dark bg-[#0B0F17] text-slate-100' : 'bg-slate-100/70 text-slate-900'} font-sans antialiased overflow-hidden transition-colors duration-150`}>
-      {/* 1. Left Collapsible Modern Healthcare Sidebar */}
+      {/* 1. Left Modern Slide-Out Clinical Navigation Drawer */}
       <Sidebar
         activeTab={activeTab}
         onTabChange={setActiveTab}
-        isCollapsed={isSidebarCollapsed}
-        onToggleCollapse={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+        isOpen={isDrawerOpen}
+        onClose={closeDrawer}
         onOpenLoginModal={() => setShowLoginModal(true)}
       />
 
@@ -70,6 +90,8 @@ export default function App() {
         <Navbar
           activeTab={activeTab}
           onOpenLoginModal={() => setShowLoginModal(true)}
+          isDrawerOpen={isDrawerOpen}
+          onToggleDrawer={toggleDrawer}
         />
 
         {/* Live Database Proof Notice Bar */}
@@ -91,7 +113,7 @@ export default function App() {
             </span>
             <button
               onClick={() => setShowLoginModal(true)}
-              className="text-teal-700 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 font-bold hover:underline transition"
+              className="text-teal-700 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 font-bold hover:underline transition cursor-pointer"
             >
               Staff Directory & Credentials →
             </button>

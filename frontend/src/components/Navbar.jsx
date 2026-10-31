@@ -7,12 +7,15 @@ import {
   Sun, 
   Moon, 
   KeyRound, 
-  Sparkles,
-  ChevronRight,
-  Database
+  Sparkles, 
+  ChevronRight, 
+  Database,
+  Menu,
+  PanelLeftClose,
+  PanelLeftOpen
 } from 'lucide-react';
 
-export default function Navbar({ activeTab, onOpenLoginModal }) {
+export default function Navbar({ activeTab, onOpenLoginModal, isDrawerOpen, onToggleDrawer }) {
   const { user, role, quickSwitch, testUsers } = useAuth();
   const { theme, toggleTheme, isDark } = useTheme();
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -43,8 +46,31 @@ export default function Navbar({ activeTab, onOpenLoginModal }) {
   return (
     <header className="sticky top-0 z-40 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors duration-200">
       <div className="px-6 py-3 flex items-center justify-between gap-4">
-        {/* Left Side: Modern Breadcrumbs & Module Title */}
+        {/* Left Side: Drawer Toggle Button & Module Title */}
         <div className="flex items-center gap-3 min-w-0">
+          {/* Quick Drawer Open/Close Button */}
+          <button
+            onClick={onToggleDrawer}
+            title={isDrawerOpen ? 'Close Navigation Drawer (Esc)' : 'Open Navigation Drawer (All Modules)'}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all shadow-xs cursor-pointer shrink-0 ${
+              isDrawerOpen
+                ? 'bg-teal-50 dark:bg-teal-950/50 border-teal-300 dark:border-teal-700 text-teal-700 dark:text-teal-300'
+                : 'bg-slate-100 hover:bg-teal-50 dark:bg-slate-800 dark:hover:bg-slate-750 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:text-teal-600 dark:hover:text-teal-300'
+            }`}
+          >
+            {isDrawerOpen ? (
+              <>
+                <PanelLeftClose className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+                <span className="hidden sm:inline font-bold">Close</span>
+              </>
+            ) : (
+              <>
+                <Menu className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+                <span className="hidden sm:inline font-bold">Modules</span>
+              </>
+            )}
+          </button>
+
           <div>
             <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium">
               <span>Al Noor HMS</span>
@@ -59,7 +85,7 @@ export default function Navbar({ activeTab, onOpenLoginModal }) {
           </div>
         </div>
 
-        {/* Right Side: Theme Toggle, Clock, Staff Directory, Role Switcher */}
+        {/* Right Side: Theme Switcher, Clock, Staff Directory, Role Switcher */}
         <div className="flex items-center gap-3 shrink-0">
           {/* Live PKT Clock */}
           <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 text-xs font-mono text-slate-700 dark:text-slate-300">
