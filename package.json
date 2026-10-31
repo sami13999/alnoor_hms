@@ -1,0 +1,21 @@
+{
+  "name": "alnoor-hms-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently -n \"API,WEB\" -c \"blue,green\" \"yarn workspace backend dev\" \"yarn workspace frontend dev\"",
+    "dev:backend": "yarn workspace backend dev",
+    "dev:frontend": "yarn workspace frontend dev",
+    "start": "yarn workspace backend start",
+    "build": "yarn workspace frontend build",
+    "test:db": "node test-connection.js",
+    "test:e2e": "node test-e2e-workflow.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

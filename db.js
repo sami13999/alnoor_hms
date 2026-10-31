@@ -3,10 +3,11 @@ const path = require('path');
 const fs = require('fs');
 const dotenv = require('dotenv');
 
-// Load .env from current directory or parent directory
+// Load .env from current directory or subdirectories
 const envPaths = [
   path.resolve(process.cwd(), '.env'),
   path.resolve(__dirname, '.env'),
+  path.resolve(__dirname, 'alnoor_hms', '.env'),
   path.resolve(__dirname, '..', '.env')
 ];
 
