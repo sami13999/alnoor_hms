@@ -95,25 +95,25 @@ export default function App() {
         />
 
         {/* Live Database Proof Notice Bar */}
-        <div className="px-6 py-2 bg-white/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600 dark:text-slate-400 transition-colors shrink-0 shadow-xs">
+        <div className="px-4 py-1.5 bg-white/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2.5 text-xs text-slate-600 dark:text-slate-400 transition-colors shrink-0 shadow-xs">
           <div className="flex items-center gap-2">
-            <Database className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
-            <span>
+            <Database className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400 shrink-0" />
+            <span className="truncate">
               Connected Live to MySQL: <strong className="text-teal-700 dark:text-teal-300 font-mono">hospital_management</strong> (localhost:3306)
             </span>
-            <span className="text-slate-300 dark:text-slate-600">•</span>
-            <span>
+            <span className="text-slate-300 dark:text-slate-600 hidden sm:inline">•</span>
+            <span className="hidden sm:inline">
               Engine: <strong className="text-slate-800 dark:text-slate-200">InnoDB ACID</strong>
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-bold">
-              <CheckCircle2 className="w-3.5 h-3.5" /> 29 / 29 Relational Tables Live
+          <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-bold shrink-0">
+              <CheckCircle2 className="w-3.5 h-3.5 shrink-0" /> 29 / 29 Relational Tables Live
             </span>
             <button
               onClick={() => setShowLoginModal(true)}
-              className="text-teal-700 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 font-bold hover:underline transition cursor-pointer"
+              className="text-teal-700 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 font-bold hover:underline transition cursor-pointer shrink-0"
             >
               Staff Directory & Credentials →
             </button>
@@ -121,7 +121,7 @@ export default function App() {
         </div>
 
         {/* Active Feature Workspace View (Smooth Internal Scroll) */}
-        <main className="flex-1 p-6 max-w-[1680px] w-full mx-auto overflow-y-auto space-y-6">
+        <main className="flex-1 p-4 lg:p-5 max-w-[1720px] w-full mx-auto overflow-y-auto space-y-5">
           {activeTab === 'opd' && <OpdPage />}
           {activeTab === 'doctor' && <DoctorPage />}
           {activeTab === 'pharmacy' && <PharmacyPage />}

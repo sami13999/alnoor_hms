@@ -91,28 +91,28 @@ export default function Sidebar({
         aria-hidden="true"
       />
 
-      {/* 2. Modern Clinical Navigation Drawer (Completely Hidden When Closed) */}
+      {/* 2. Modern Compact Clinical Navigation Drawer (Completely Hidden When Closed) */}
       <aside
-        className={`fixed lg:static top-0 left-0 bottom-0 z-50 flex flex-col bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transition-all duration-300 ease-in-out shrink-0 select-none shadow-2xl lg:shadow-none ${
+        className={`fixed lg:static top-0 left-0 bottom-0 z-50 flex flex-col bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transition-all duration-300 ease-in-out shrink-0 select-none shadow-xl lg:shadow-none ${
           isOpen 
-            ? 'w-72 translate-x-0 opacity-100' 
+            ? 'w-64 translate-x-0 opacity-100' 
             : 'w-0 -translate-x-full lg:translate-x-0 lg:w-0 opacity-0 pointer-events-none border-r-0 overflow-hidden'
         }`}
         style={{ willChange: 'width, transform' }}
       >
         {/* Drawer Inner Fixed Width Container: Prevents content squeeze during slide transition */}
-        <div className="w-72 flex flex-col h-full overflow-hidden">
+        <div className="w-64 flex flex-col h-full overflow-hidden">
           {/* Header Branding & Close Button */}
-          <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-850/60">
-            <div className="flex items-center gap-3 overflow-hidden">
-              <div className="p-2.5 bg-gradient-to-tr from-teal-600 to-emerald-600 rounded-xl shadow-md shadow-teal-700/20 text-white shrink-0">
-                <Building2 className="w-5 h-5" />
+          <div className="flex items-center justify-between p-3.5 border-b border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-850/60 shrink-0">
+            <div className="flex items-center gap-2.5 overflow-hidden">
+              <div className="p-2 bg-gradient-to-tr from-teal-600 to-emerald-600 rounded-xl shadow-sm text-white shrink-0">
+                <Building2 className="w-4 h-4" />
               </div>
               <div className="truncate">
-                <h1 className="font-extrabold text-sm text-slate-900 dark:text-white tracking-tight leading-tight truncate">
+                <h1 className="font-extrabold text-xs text-slate-900 dark:text-white tracking-tight leading-tight truncate">
                   Al Noor Specialist
                 </h1>
-                <div className="text-[10px] text-teal-600 dark:text-teal-400 font-bold tracking-wider uppercase mt-0.5">
+                <div className="text-[9px] text-teal-600 dark:text-teal-400 font-bold tracking-wider uppercase mt-0.5">
                   Battagram • MSDS 2-B
                 </div>
               </div>
@@ -122,17 +122,17 @@ export default function Sidebar({
             <button
               onClick={onClose}
               title="Close Navigation Drawer (Esc)"
-              className="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-lg hover:bg-slate-200/70 dark:hover:bg-slate-800 transition shrink-0 cursor-pointer"
+              className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-lg hover:bg-slate-200/70 dark:hover:bg-slate-800 transition shrink-0 cursor-pointer"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
 
           {/* Categorized Clinical Navigation List */}
-          <div className="flex-1 overflow-y-auto px-3 py-4 space-y-4">
+          <div className="flex-1 overflow-y-auto px-2.5 py-3 space-y-3">
             {navigationGroups.map((group, gIdx) => (
-              <div key={gIdx} className="space-y-1">
-                <div className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 pb-1">
+              <div key={gIdx} className="space-y-0.5">
+                <div className="px-2.5 text-[9px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 pb-1">
                   {group.group}
                 </div>
 
@@ -146,18 +146,18 @@ export default function Sidebar({
                         onTabChange(item.id);
                         if (window.innerWidth < 1024) onClose();
                       }}
-                      className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                      className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                         isActive
-                          ? 'bg-teal-600 text-white shadow-md shadow-teal-600/25 dark:shadow-teal-950/60 font-bold'
+                          ? 'bg-teal-600 text-white shadow-sm shadow-teal-600/30 dark:shadow-teal-950/60 font-bold'
                           : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-white'
                       }`}
                     >
-                      <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : 'text-slate-500 dark:text-slate-400'}`} />
+                      <Icon className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-white' : 'text-slate-500 dark:text-slate-400'}`} />
 
                       <div className="flex-1 flex items-center justify-between overflow-hidden text-left">
                         <span className="truncate">{item.label}</span>
                         <span
-                          className={`text-[9px] px-1.5 py-0.5 rounded font-mono font-bold shrink-0 ${
+                          className={`text-[8.5px] px-1.5 py-0.2 rounded font-mono font-bold shrink-0 ${
                             isActive
                               ? 'bg-teal-700/80 text-teal-100'
                               : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200/60 dark:border-slate-700/60'
@@ -174,24 +174,24 @@ export default function Sidebar({
           </div>
 
           {/* Profile & Staff Access Footer */}
-          <div className="p-3 border-t border-slate-200 dark:border-slate-800 space-y-2 bg-slate-50/70 dark:bg-slate-900/70">
+          <div className="p-2.5 border-t border-slate-200 dark:border-slate-800 space-y-1.5 bg-slate-50/70 dark:bg-slate-900/70 shrink-0">
             <button
               onClick={onOpenLoginModal}
-              title="Hospital Staff Credentials & Fast Login Directory"
-              className="w-full flex items-center justify-between py-2 px-3 rounded-xl text-xs font-bold bg-white dark:bg-slate-800 hover:bg-teal-50 dark:hover:bg-slate-750 border border-slate-200 dark:border-slate-700 text-teal-700 dark:text-teal-300 transition shadow-xs cursor-pointer"
+              title="Hospital Staff Credentials Directory"
+              className="w-full flex items-center justify-between py-1.5 px-2.5 rounded-lg text-xs font-bold bg-white dark:bg-slate-800 hover:bg-teal-50 dark:hover:bg-slate-750 border border-slate-200 dark:border-slate-700 text-teal-700 dark:text-teal-300 transition shadow-xs cursor-pointer"
             >
               <div className="flex items-center gap-2">
-                <KeyRound className="w-4 h-4 text-amber-500 shrink-0" />
+                <KeyRound className="w-3.5 h-3.5 text-amber-500 shrink-0" />
                 <span>Staff Logins Hub</span>
               </div>
-              <span className="text-[10px] bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 px-1.5 py-0.5 rounded font-bold border border-amber-300 dark:border-amber-700">
+              <span className="text-[9px] bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 px-1.5 py-0.2 rounded font-bold border border-amber-300 dark:border-amber-700">
                 8 Roles
               </span>
             </button>
 
             {/* Current Active Staff Card */}
-            <div className="flex items-center gap-2.5 p-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 shadow-xs">
-              <div className="w-8 h-8 rounded-lg bg-teal-100 dark:bg-teal-950/60 border border-teal-300 dark:border-teal-700 flex items-center justify-center text-teal-700 dark:text-teal-300 font-bold text-xs shrink-0 uppercase">
+            <div className="flex items-center gap-2 p-1.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 shadow-xs">
+              <div className="w-7 h-7 rounded-lg bg-teal-100 dark:bg-teal-950/60 border border-teal-300 dark:border-teal-700 flex items-center justify-center text-teal-700 dark:text-teal-300 font-bold text-xs shrink-0 uppercase">
                 {user?.username?.slice(0, 2) || 'AN'}
               </div>
 
@@ -199,7 +199,7 @@ export default function Sidebar({
                 <div className="text-xs font-bold text-slate-900 dark:text-white truncate leading-tight">
                   {user?.full_name || 'Hospital Staff'}
                 </div>
-                <span className={`inline-block px-1.5 py-0.5 text-[9px] font-bold rounded border mt-0.5 uppercase ${
+                <span className={`inline-block px-1 py-0 text-[8.5px] font-bold rounded border mt-0.5 uppercase ${
                   roleColors[role] || 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
                 }`}>
                   {role}
@@ -209,7 +209,7 @@ export default function Sidebar({
               <button
                 onClick={logout}
                 title="Sign out active session"
-                className="p-1.5 text-slate-400 hover:text-rose-500 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition shrink-0 cursor-pointer"
+                className="p-1 text-slate-400 hover:text-rose-500 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition shrink-0 cursor-pointer"
               >
                 <LogOut className="w-3.5 h-3.5" />
               </button>
